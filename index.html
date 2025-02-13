@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/corazonceleste.png">
+    <title>Para Mi Amor ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 3em;
+        }
+
+        .laberinto {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            grid-template-rows: repeat(5, 60px);
+            gap: 5px;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .celda {
+            width: 60px;
+            height: 60px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            border: 2px solid #ff758c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+        }
+
+        .inicio { background-color: #ffcccb; }
+        .fin { background-color: #ff4d6d; }
+        
+        .controles {
+            margin-top: 20px;
+        }
+
+        .control {
+            background: #ff4d6d;
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+            transition: 0.2s;
+        }
+
+        .control:hover {
+            transform: scale(1.1);
+        }
+
+        .mensaje-sorpresa {
+            display: none;
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 24px;
+            color: #d63384;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: aparecer 0.8s ease-out forwards;
+        }
+        #imagen-romantica {
+           
+            width: 300px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes aparecer {
+            0% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+            70% { transform: scale(1.05) translateY(0px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .boton {
+            padding: 12px 20px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 1s ease-out 0.5s forwards;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .boton:hover {
+            background-color: #e63950;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Feliz Día de San Valentín, Mi Angelito ❤️</h1>
+    <h2>Guía el corazón hasta el final 💖</h2>
+    
+    <div class="laberinto" id="laberinto"></div>
+    <div class="controles">
+        <button class="control" onclick="mover('up')">⬆️</button><br>
+        <button class="control" onclick="mover('left')">⬅️</button>
+        <button class="control" onclick="mover('down')">⬇️</button>
+        <button class="control" onclick="mover('right')">➡️</button>
+    </div>
+
+    <div class="mensaje-sorpresa" id="mensaje-sorpresa">
+        ¡Felicidades, mi amor!  Has encontrado el camino a mi corazón.❤️ <br>
+        <img id="imagen-romantica" src="img/forksanvalentin.png" alt="Imagen romántica">
+        <br><br>
+        <button class="boton" id="siguiente-juego" onclick="irAlSiguienteJuego()">Ir al Siguiente Juego ➡️</button>
+    </div>
+
+    <script>
+        const laberinto = [
+            [1, 0, 0, 0, 0],
+            [1, 1, 1, 0, 0],
+            [0, 0, 1, 1, 0],
+            [0, 0, 0, 1, 0],
+            [0, 0, 0, 1, 2]
+        ];
+
+        let jugadorX = 0, jugadorY = 0;
+
+        function dibujarLaberinto() {
+            const contenedor = document.getElementById("laberinto");
+            contenedor.innerHTML = "";
+            for (let y = 0; y < 5; y++) {
+                for (let x = 0; x < 5; x++) {
+                    const celda = document.createElement("div");
+                    celda.classList.add("celda");
+
+                    if (y === jugadorY && x === jugadorX) {
+                        celda.innerHTML = "❤️"; // Corazón como jugador
+                    } else if (laberinto[y][x] === 1) {
+                        celda.classList.add("inicio");
+                    } else if (laberinto[y][x] === 2) {
+                        celda.classList.add("fin");
+                        celda.innerHTML = "🎯"; // Meta con un objetivo
+                    }
+
+                    contenedor.appendChild(celda);
+                }
+            }
+        }
+
+        function mover(direccion) {
+            let nuevaX = jugadorX, nuevaY = jugadorY;
+            if (direccion === "up" && jugadorY > 0) nuevaY--;
+            if (direccion === "down" && jugadorY < 4) nuevaY++;
+            if (direccion === "left" && jugadorX > 0) nuevaX--;
+            if (direccion === "right" && jugadorX < 4) nuevaX++;
+
+            if (laberinto[nuevaY][nuevaX] !== 0) {
+                jugadorX = nuevaX;
+                jugadorY = nuevaY;
+                dibujarLaberinto();
+
+                if (laberinto[jugadorY][jugadorX] === 2) {
+                    let mensaje = document.getElementById("mensaje-sorpresa");
+                    let boton = document.getElementById("siguiente-juego");
+
+                    mensaje.style.display = "block";
+                    boton.style.display = "block";
+                }
+            }
+        }
+
+        function irAlSiguienteJuego() {
+            window.location.href = "memoria.html";
+        }
+
+        dibujarLaberinto();
+    </script>        
+</body>
+</html>

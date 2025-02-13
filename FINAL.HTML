@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/corazonceleste.png">
+
+    <title>Página Final</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 2em;
+            margin-top: 10px;
+        }
+
+        .slider-container {
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain; /* Ajuste para que las imágenes no se recorten */
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .slider-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .boton {
+            padding: 10px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 1.2em;
+            margin: 5px;
+            transition: 0.3s ease-in-out;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .boton:hover {
+            background-color: #e63950;
+        }
+        #imagen-romantica {
+    width: 100%;
+    max-width: 350px; /* Tamaño máximo en PC */
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+.carta {
+    width: 80%;
+    max-width: 850px;
+    height: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    margin: 20px auto;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #6a0572;
+    font-family: 'Dancing Script', cursive;
+    overflow: hidden; /* Evita que la imagen se salga */
+}
+
+@media (max-width: 480px) {
+    .carta {
+        width: 95%;
+        padding: 20px;
+    }
+    #imagen-romantica {
+        max-width: 90%; /* Más flexible en pantallas pequeñas */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Para mi Amor 💖</h1>
+    
+    <h2>Recuerditos</h2>
+    <div class="slider-container">
+        <div class="slider" id="sliderAuto">
+            <img src="img/imagen3.jpeg" alt="Imagen 1">
+            <img src="img/imagen2.jpeg" alt="Imagen 2">
+            <img src="img/imagen1.jpeg" alt="Imagen 3">
+        </div>
+    </div>
+
+    <div class="carta">
+        <p>Para mi angelito, Alexandra 💜 <br> <br>
+
+            Desde la distancia, pero con todo mi corazón, te escribo estas palabras que quizás no alcancen a describir lo mucho que significas para mí. No hay un solo día en que no agradezca por haberte encontrado, por tenerte en mi vida y por sentir tu amor, aunque los kilómetros nos separen.<br> <br>
+            
+            Eres mi luz en los días grises, mi refugio cuando el mundo pesa demasiado.  A veces cierro los ojos y me imagino a tu lado, tomándote de la mano, sintiendo el calor de tu abrazo, escuchando tu risa… Y aunque aún no pueda tenerte físicamente conmigo, mi corazón te lleva siempre, en cada latido, en cada pensamiento.<br> <br>
+            
+            Nuestra historia es única, porque a pesar de la distancia, nuestro amor sigue creciendo, fuerte y verdadero. Y aunque extraño cada segundo que no estoy contigo, también sé que todo esto vale la pena, porque tú lo vales, porque lo nuestro es real y porque algún día, cuando estemos juntos, cada instante de espera habrá valido la pena.<br> <br>
+            
+            En este San Valentín, quiero recordarte lo increíble que eres y lo mucho que te amo. Mi angelito, gracias por existir, por darme tu amor, por llenar mis días de felicidad y por demostrarme que no hay distancia que pueda contra dos corazones que laten al mismo ritmo.
+            
+            Te amo con toda mi alma.
+            <br> <br>
+            Siempre tuyo, a yo daly  💜 
+    
+            <img id="imagen-romantica" src="img/xd.png" alt="">
+        </p>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider" id="sliderManual">
+            <img src="img/1.jpeg" alt="Imagen 1">
+            <img src="img/2.jpeg" alt="Imagen 2">
+            <img src="img/3.jpeg" alt="Imagen 3">
+            <img src="img/4.jpeg" alt="Imagen 4">
+            <img src="img/5.jpeg" alt="Imagen 5">
+            <img src="img/6.jpeg" alt="Imagen 6">
+            <img src="img/7.jpeg" alt="Imagen 7">
+            <img src="img/8.jpeg" alt="Imagen 8">
+            <img src="img/9.jpeg" alt="Imagen 9">
+        </div>
+    </div>
+    <div class="slider-buttons">
+        <button class="boton" onclick="moverSlider(-1)">⬅️</button>
+        <button class="boton" onclick="moverSlider(1)">➡️</button>
+    </div>
+
+    <a href="index.html" class="boton" style="display:block; margin-top:20px;">Volver al Primer Juego</a>
+
+    <script>
+        let sliderIndex = 0;
+
+        function autoSlide() {
+            let slider = document.getElementById("sliderAuto");
+            let slides = slider.children;
+            sliderIndex = (sliderIndex + 1) % slides.length;
+            slider.style.transform = `translateX(-${sliderIndex * 100}%)`;
+        }
+        setInterval(autoSlide, 3000);
+
+        let manualIndex = 0;
+        function moverSlider(direccion) {
+            let slider = document.getElementById("sliderManual");
+            let slides = slider.children.length;
+            manualIndex = (manualIndex + direccion + slides) % slides;
+            slider.style.transform = `translateX(-${manualIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>

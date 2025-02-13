@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/corazonceleste.png">
+    <title>Atraparme si Puedes 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: auto;
+            margin: 0;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #game-container {
+            position: relative;
+            width: 80vw;
+            height: 60vh;
+            border: 3px solid #d63384;
+            border-radius: 15px;
+            background-color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #boton-atrapame {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            border-radius: 15px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        #imagen-romantica {
+            display: none;
+            position: absolute;
+            width: 250px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #mensaje-atrapame {
+            display: none;
+            font-size: 1.5em;
+            color: #d63384;
+            font-family: 'Dancing Script', cursive;
+            margin-top: 20px;
+            animation: aparecer 1.5s ease-in-out;
+        }
+
+        @keyframes aparecer {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .boton {
+            padding: 12px 20px;
+            background-color: #ff4d6d;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: 0.3s ease-in-out;
+            font-family: 'Dancing Script', cursive;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .boton:hover {
+            background-color: #e63950;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Atraparme si Puedes 💖</h1>
+    <div id="game-container">
+        <button id="boton-atrapame">¡Atrápame! 💘</button>
+        <img id="imagen-romantica" src="img/corazon.png" alt="Imagen romántica">
+    </div>
+    <div id="mensaje-atrapame">
+        <p>¡Me atrapaste! Así como atrapaste mi corazón para siempre. 💞</p>
+        <a href="FINAL.HTML" class="boton">ultima sorpresa 💖</a>
+    </div>
+
+    <script>
+        let boton = document.getElementById('boton-atrapame');
+        let gameContainer = document.getElementById('game-container');
+        let mensaje = document.getElementById('mensaje-atrapame');
+        let imagen = document.getElementById('imagen-romantica');
+        let intentos = 0;
+
+        function moverBoton() {
+            if (intentos < 12) { 
+                let maxX = gameContainer.clientWidth - boton.clientWidth - 10;
+                let maxY = gameContainer.clientHeight - boton.clientHeight - 10;
+
+                let x = Math.random() * maxX;
+                let y = Math.random() * maxY;
+
+                boton.style.left = `${x}px`;
+                boton.style.top = `${y}px`;
+                intentos++;
+            } else {
+                boton.onclick = mostrarMensaje;
+            }
+        }
+
+        function mostrarMensaje() {
+            imagen.style.display = 'block'; // La imagen aparece dentro del recuadro
+            mensaje.style.display = 'block'; // El mensaje aparece fuera del recuadro
+            boton.style.display = 'none'; // El botón desaparece
+        }
+
+        boton.addEventListener('mouseover', moverBoton);
+    </script>
+</body>
+</html>
